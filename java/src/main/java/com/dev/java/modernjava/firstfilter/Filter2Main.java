@@ -1,4 +1,4 @@
-package com.dev.java.modernjava.filter2;
+package com.dev.java.modernjava.firstfilter;
 
 import com.dev.java.modernjava.common.Apple;
 import com.dev.java.modernjava.common.Color;

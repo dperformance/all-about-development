@@ -1,0 +1,19 @@
+#spring:
+#  datasource:
+#    #    url: jdbc:h2:~/data/demo
+#    url: jdbc:h2:mem:test
+#    username: root
+#    password: password
+#
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+
+#jwt:
+#  secret: "1234567890123456789012"
+
+#spring:
+#  mvc:
+#    view:
+#      suffix: .html
