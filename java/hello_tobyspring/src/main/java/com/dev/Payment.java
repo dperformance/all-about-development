@@ -1,4 +1,4 @@
-package tobyspring.hellospring;
+package com.dev;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
