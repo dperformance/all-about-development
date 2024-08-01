@@ -1,6 +1,3 @@
 rootProject.name = 'java'
-include 'hellospring'
-include 'modern_java'
-include 'hello_tobyspring_'
-include 'hello_tobyspring'
+include 'hellospring', 'modern_java', 'hello_tobyspring'
 
