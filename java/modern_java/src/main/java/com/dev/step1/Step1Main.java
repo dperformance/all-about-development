@@ -1,6 +1,6 @@
 package com.dev.step1;
 
-import com.dev.dto.Apple;
+import com.dev.global.dto.Apple;
 import com.dev.global.enums.Color;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +35,16 @@ public class Step1Main {
         return result;
     }
 
+    private static List<Apple> filterRedApplesAndWeight(List<Apple> inventory){
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if (Color.RED.equals(apple.getColor()) && apple.getWeight() >= 100) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         List<Apple> apples = List.of(
                 new Apple(Color.RED, 100),
@@ -43,6 +53,8 @@ public class Step1Main {
                 new Apple(Color.GREEN, 70)
         );
         List<Apple> result = filterGreenApples(apples);
-        log.info("result : {}", result);
+        List<Apple> result1 = filterRedApplesAndWeight(apples);
+        log.info("result    : {}", result);
+        log.info("result1   : {}", result1);
     }
 }

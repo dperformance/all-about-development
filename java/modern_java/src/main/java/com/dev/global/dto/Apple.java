@@ -1,4 +1,4 @@
-package com.dev.dto;
+package com.dev.global.dto;
 
 import com.dev.global.enums.Color;
 import lombok.Builder;
