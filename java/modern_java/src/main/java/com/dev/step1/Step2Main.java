@@ -12,6 +12,8 @@ import java.util.List;
 public class Step2Main {
 
     /**
+     * 2. 함수형 인터페이스 사용
+     *
      * 이제, 변화하는 요구사항에 유연한 코드를 만들 수 있게 되었다.
      * 요구사항이 변화하면 ApplePredicate 를 상속받은 클래스를 새로 구현해서 사용하면 된다.
      * 이는 자바의 다형성(Polymolphism) 을 이용한 좋은 해결 방법이다.
