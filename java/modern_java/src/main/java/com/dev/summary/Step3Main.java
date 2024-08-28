@@ -1,4 +1,4 @@
-package com.dev.step1;
+package com.dev.summary;
 
 import com.dev.global.dto.Apple;
 import com.dev.global.dto.ApplePredicate;
@@ -51,6 +51,5 @@ public class Step3Main {
         });
 
         log.info("result : {}", result);
-
     }
 }
