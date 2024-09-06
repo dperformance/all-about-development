@@ -2,8 +2,8 @@ package com.dev;
 
 import java.math.BigDecimal;
 
-public class SimpleExRatePaymentService extends PaymentService{
-    @Override
+public class SimpleExRateProvider {
+
     BigDecimal getExRate(String currency) {
         if (currency.equals("USD")) return BigDecimal.valueOf(1000);
 

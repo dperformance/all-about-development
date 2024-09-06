@@ -2,12 +2,6 @@ package job;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.sql.Array;
-
-import static java.util.stream.Collectors.joining;
 
 @Slf4j
 public class JobTest {
