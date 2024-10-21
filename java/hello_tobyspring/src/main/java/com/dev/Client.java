@@ -1,5 +1,7 @@
 package com.dev;
 
+import com.dev.payment.Payment;
+import com.dev.payment.PaymentService;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -26,4 +28,5 @@ public class Client {
         Payment payment3 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
         System.out.println("payment 3" + payment1);
     }
+
 }

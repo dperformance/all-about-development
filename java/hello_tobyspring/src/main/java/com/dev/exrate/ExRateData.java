@@ -1,4 +1,4 @@
-package com.dev;
+package com.dev.exrate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

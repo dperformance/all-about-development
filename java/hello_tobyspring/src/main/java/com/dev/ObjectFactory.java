@@ -1,5 +1,9 @@
 package com.dev;
 
+import com.dev.exrate.CachedExRateProvider;
+import com.dev.payment.ExRateProvider;
+import com.dev.exrate.WebApiExRateProvider;
+import com.dev.payment.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +40,8 @@ public class ObjectFactory {
     public ExRateProvider exRateProvider() {
         return new WebApiExRateProvider();
     }
+
+
 }
 
 

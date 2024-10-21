@@ -1,4 +1,6 @@
-package com.dev;
+package com.dev.exrate;
+
+import com.dev.payment.ExRateProvider;
 
 import java.io.IOException;
 import java.math.BigDecimal;
