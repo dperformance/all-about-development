@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
@@ -11,20 +12,24 @@ import java.time.temporal.ChronoUnit;
 public class PaymentTest {
 
     private Clock clock;
+    private ExRateProvider exRateProvider;
+    private LocalDateTime now;
 
     @BeforeEach
     void setUp() {
-        clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
+        this.clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
+        this.exRateProvider = new ExRateProviderStub(BigDecimal.valueOf(1_000));
+        this.now = LocalDateTime.now(clock);
     }
 
     @Test
-    void createPrepared() {
+    void createPrepared() throws IOException {
         Payment payment = Payment.createPrepared(
                 1L,
                 "USD",
                 BigDecimal.TEN,
-                BigDecimal.valueOf(1_000),
-                LocalDateTime.now(clock) );
+                exRateProvider,
+                now);
 
         Assertions.assertThat(payment.getConvertedAmount())
                 .isEqualByComparingTo(BigDecimal.valueOf(10_000));
@@ -34,13 +39,13 @@ public class PaymentTest {
     }
 
     @Test
-    void isValid() {
+    void isValid() throws IOException {
         Payment payment = Payment.createPrepared(
                 1L,
                 "USD",
                 BigDecimal.TEN,
-                BigDecimal.valueOf(1_000),
-                LocalDateTime.now(clock) );
+                exRateProvider,
+                now);
 
         Assertions.assertThat(payment.isValid(clock)).isTrue();
 

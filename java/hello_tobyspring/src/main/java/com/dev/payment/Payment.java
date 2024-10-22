@@ -1,5 +1,6 @@
 package com.dev.payment;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -23,9 +24,10 @@ public class Payment {
     }
 
     public static Payment createPrepared(Long orderId, String currency, BigDecimal foreignCurrencyAmount,
-                                         BigDecimal exRate, LocalDateTime now) {
-        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);        // 원화금액을 계산
-        LocalDateTime validUntil = now.plusMinutes(30);        // 언제까지 유효한지.
+                                         ExRateProvider exRateProvider, LocalDateTime now) throws IOException {
+        BigDecimal exRate = exRateProvider.getExRate(currency);                 // 환율정보 조회
+        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);    // 원화금액을 계산
+        LocalDateTime validUntil = now.plusMinutes(30);                         // 언제까지 유효한지.
 
         return new Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil);
     }

@@ -16,12 +16,9 @@ public class PaymentService {
     public PaymentService(ExRateProvider exRateProvider, Clock clock) {
         this.exRateProvider = exRateProvider;
         this.clock = clock;
-
     }
 
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws IOException {
-        BigDecimal exRate = exRateProvider.getExRate(currency);                     // 원화환율 가져오기
-
-        return Payment.createPrepared(orderId, currency, foreignCurrencyAmount, exRate, LocalDateTime.now(clock));
+        return Payment.createPrepared(orderId, currency, foreignCurrencyAmount, exRateProvider, LocalDateTime.now(clock));
     }
 }
