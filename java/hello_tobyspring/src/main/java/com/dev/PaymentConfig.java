@@ -1,16 +1,16 @@
 package com.dev;
 
 import com.dev.exrate.CachedExRateProvider;
-import com.dev.payment.ExRateProvider;
 import com.dev.exrate.WebApiExRateProvider;
+import com.dev.payment.ExRateProvider;
 import com.dev.payment.PaymentService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Clock;
+
 @Configuration
-@ComponentScan
-public class ObjectFactory {
+public class PaymentConfig {
 
     /*
      * ObjectFactory는 구성정보를 가진 클래스로써
@@ -27,7 +27,7 @@ public class ObjectFactory {
     // 데코레이터 패턴을 위해 cachedExRateProvider()를 주입.
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(cachedExRateProvider());
+        return new PaymentService(cachedExRateProvider(), clock());
     }
 
     // Runtime에 CachedExRateprovider에 ExRateProvider 구현체를 주입시켜준다.
@@ -41,6 +41,10 @@ public class ObjectFactory {
         return new WebApiExRateProvider();
     }
 
+    @Bean
+    public Clock clock() {
+        return Clock.systemDefaultZone();
+    }
 
 }
 

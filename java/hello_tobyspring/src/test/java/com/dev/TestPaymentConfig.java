@@ -7,11 +7,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
+
 import static java.math.BigDecimal.valueOf;
 
 @Configuration
 @ComponentScan
-public class TestObjectFactory {
+public class TestPaymentConfig {
 
     /*
      * ObjectFactory는 구성정보를 가진 클래스로써
@@ -28,7 +32,7 @@ public class TestObjectFactory {
     // 데코레이터 패턴을 위해 cachedExRateProvider()를 주입.
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(exRateProvider());
+        return new PaymentService(exRateProvider(), clock());
     }
 
     @Bean
@@ -36,6 +40,10 @@ public class TestObjectFactory {
         return new ExRateProviderStub(valueOf(1_000));
     }
 
+    @Bean
+    public Clock clock() {
+        return Clock.fixed(Instant.now(), ZoneId.systemDefault());
+    }
 
 }
 
