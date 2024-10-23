@@ -32,7 +32,7 @@ public class PaymentServiceSpringTest {
 
     @Test
     @DisplayName("prepare 메소드가 요구사항 3가지를 잘 충족했는지 검증")
-    void convertedAmount() throws IOException {
+    void convertedAmount() {
         // exRate : 1000
         Payment payment = paymentService.prepare(1L, "USD", TEN);
 
@@ -53,7 +53,7 @@ public class PaymentServiceSpringTest {
     }
 
     @Test
-    void validUntil() throws IOException {
+    void validUntil() {
         System.out.println(this.clock);
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 

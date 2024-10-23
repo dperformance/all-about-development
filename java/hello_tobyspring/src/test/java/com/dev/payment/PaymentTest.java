@@ -23,13 +23,15 @@ public class PaymentTest {
     }
 
     @Test
-    void createPrepared() throws IOException {
+    void createPrepared() {
         Payment payment = Payment.createPrepared(
                 1L,
                 "USD",
                 BigDecimal.TEN,
                 exRateProvider,
                 now);
+
+        Assertions.assertThat(payment.getExRate()).isEqualByComparingTo(BigDecimal.valueOf(1_000));
 
         Assertions.assertThat(payment.getConvertedAmount())
                 .isEqualByComparingTo(BigDecimal.valueOf(10_000));
@@ -39,7 +41,7 @@ public class PaymentTest {
     }
 
     @Test
-    void isValid() throws IOException {
+    void isValid() {
         Payment payment = Payment.createPrepared(
                 1L,
                 "USD",
