@@ -1,11 +1,12 @@
 package com.dev;
 
 import com.dev.exrate.CachedExRateProvider;
-import com.dev.exrate.WebApiExRateProvider;
+import com.dev.exrate.RestTemplateExRateProvider;
 import com.dev.payment.ExRateProvider;
 import com.dev.payment.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Clock;
 
@@ -37,8 +38,13 @@ public class PaymentConfig {
     }
 
     @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+    @Bean
     public ExRateProvider exRateProvider() {
-        return new WebApiExRateProvider();
+        return new RestTemplateExRateProvider(restTemplate());
     }
 
     @Bean
